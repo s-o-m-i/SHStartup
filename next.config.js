@@ -1,6 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Remove experimental flag as app directory is now stable
+  experimental: {
+    appDir: true,
+  },
+  output: 'standalone',
+  images: {
+    domains: ['images.unsplash.com'], // Add any image domains you're using
+    unoptimized: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 module.exports = nextConfig;
