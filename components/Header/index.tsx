@@ -38,14 +38,14 @@ const Header = () => {
   return (
     <>
       <header
-        className={`header top-0 left-0 z-40 flex w-full items-center bg-transparent ${
+        className={`header relative top-0 left-0 z-40 flex w-full items-center bg-transparent ${
           sticky
             ? "!fixed !z-[9999] !bg-white !bg-opacity-80 shadow-sticky backdrop-blur-sm !transition dark:!bg-primary dark:!bg-opacity-20"
             : "absolute"
         }`}
       >
         <div className="container">
-          <div className="relative -mx-4 flex items-center justify-between">
+          <div className=" -mx-4 flex items-center justify-between">
             <div className="w-60 max-w-full px-4 xl:mr-12">
               <Link
                 href="/"
@@ -78,17 +78,17 @@ const Header = () => {
                   className="absolute right-4 top-1/2 block translate-y-[-50%] rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
                 >
                   <span
-                    className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
+                    className={` my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
                       navbarOpen ? " top-[7px] rotate-45" : " "
                     }`}
                   />
                   <span
-                    className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
+                    className={` my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
                       navbarOpen ? "opacity-0 " : " "
                     }`}
                   />
                   <span
-                    className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
+                    className={` my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
                       navbarOpen ? " top-[-8px] -rotate-45" : " "
                     }`}
                   />
@@ -103,7 +103,7 @@ const Header = () => {
                 >
                   <ul className="block lg:flex lg:space-x-12">
                     {menuData.map((menuItem, index) => (
-                      <li key={menuItem.id} className="group relative">
+                      <li key={menuItem.id} className="group ">
                         {menuItem.path ? (
                           <Link
                             href={menuItem.path}
@@ -128,19 +128,58 @@ const Header = () => {
                               </span>
                             </a>
                             <div
-                              className={`submenu relative top-full left-0 rounded-md bg-white transition-[top] duration-300 group-hover:opacity-100 dark:bg-dark lg:invisible lg:absolute lg:top-[110%] lg:block lg:w-[250px] lg:p-4 lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full ${
+                              className={`rounded-md bg-white transition-all  duration-300  dark:bg-dark  lg:absolute left-0 lg:top-[100%] lg:block  lg:w-[100vw] group-hover:h-[300px]  h-0 overflow-hidden  lg:p-0 lg:shadow-lg   ${
                                 openIndex === index ? "block" : "hidden"
                               }`}
                             >
-                              {menuItem.submenu.map((submenuItem) => (
-                                <Link
-                                  href={submenuItem.path}
-                                  key={submenuItem.id}
-                                  className="block rounded py-2.5 text-sm text-dark hover:opacity-70 dark:text-white lg:px-3"
-                                >
-                                  {submenuItem.title}
-                                </Link>
-                              ))}
+                              <div className="container">
+                                <div className="grid grid-cols-4 gap-8">
+                                  <div className="space-y-2">
+                                    {menuItem.submenu.slice(0, Math.ceil(menuItem.submenu.length / 4)).map((submenuItem) => (
+                                      <Link
+                                        href={submenuItem.path}
+                                        key={submenuItem.id}
+                                        className="block rounded py-2.5 text-sm text-dark hover:opacity-70 dark:text-white lg:px-3"
+                                      >
+                                        {submenuItem.title}
+                                      </Link>
+                                    ))}
+                                  </div>
+                                  <div className="space-y-2">
+                                    {menuItem.submenu.slice(Math.ceil(menuItem.submenu.length / 4), Math.ceil(menuItem.submenu.length / 4) * 2).map((submenuItem) => (
+                                      <Link
+                                        href={submenuItem.path}
+                                        key={submenuItem.id}
+                                        className="block rounded py-2.5 text-sm text-dark hover:opacity-70 dark:text-white lg:px-3"
+                                      >
+                                        {submenuItem.title}
+                                      </Link>
+                                    ))}
+                                  </div>
+                                  <div className="space-y-2">
+                                    {menuItem.submenu.slice(Math.ceil(menuItem.submenu.length / 4) * 2, Math.ceil(menuItem.submenu.length / 4) * 3).map((submenuItem) => (
+                                      <Link
+                                        href={submenuItem.path}
+                                        key={submenuItem.id}
+                                        className="block rounded py-2.5 text-sm text-dark hover:opacity-70 dark:text-white lg:px-3"
+                                      >
+                                        {submenuItem.title}
+                                      </Link>
+                                    ))}
+                                  </div>
+                                  <div className="space-y-2">
+                                    {menuItem.submenu.slice(Math.ceil(menuItem.submenu.length / 4) * 3).map((submenuItem) => (
+                                      <Link
+                                        href={submenuItem.path}
+                                        key={submenuItem.id}
+                                        className="block rounded py-2.5 text-sm text-dark hover:opacity-70 dark:text-white lg:px-3"
+                                      >
+                                        {submenuItem.title}
+                                      </Link>
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
                             </div>
                           </>
                         )}
@@ -151,17 +190,17 @@ const Header = () => {
               </div>
               <div className="flex items-center justify-end pr-16 lg:pr-0">
                 <Link
-                  href="/signin"
+                  href="#"
                   className="hidden py-3 px-7 text-base font-bold text-dark hover:opacity-70 dark:text-white md:block"
                 >
-                  Sign In
+                Get a Quote
                 </Link>
-                <Link
+                {/* <Link
                   href="/signup"
                   className="ease-in-up hidden rounded-md bg-primary py-3 px-8 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
                 >
                   Sign Up
-                </Link>
+                </Link> */}
                 <div>
                   <ThemeToggler />
                 </div>

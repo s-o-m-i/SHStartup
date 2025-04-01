@@ -1,8 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
+  // Remove experimental flag as app directory is now stable
 };
 
 module.exports = nextConfig;
